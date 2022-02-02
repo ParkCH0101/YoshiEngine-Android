@@ -15,7 +15,6 @@ class Mobilecontrols extends FlxSpriteGroup
 	public var _hitbox:Hitbox;
 	public var _virtualPad:FlxVirtualPad;
 
-	var config:Config;
 
 	public function new() 
 	{
@@ -41,7 +40,6 @@ class Mobilecontrols extends FlxSpriteGroup
 				_virtualPad = new FlxVirtualPad(FULL, NONE);
 			case 2:
 				_virtualPad = new FlxVirtualPad(FULL, NONE);
-				_virtualPad = config.loadcustom(_virtualPad);
 			default: // 0
 				_virtualPad = new FlxVirtualPad(RIGHT_FULL, NONE);
 		}
