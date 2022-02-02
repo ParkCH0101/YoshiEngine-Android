@@ -54,6 +54,10 @@ import openfl.display.StageQuality;
 import openfl.display.BitmapData;
 import openfl.filters.ShaderFilter;
 import LoadSettings.Settings;
+#if android
+import.ui.Hitbox;
+import.ui.Mobilecontrols;
+#end
 
 using StringTools;
 
