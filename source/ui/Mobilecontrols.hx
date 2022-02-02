@@ -6,7 +6,6 @@ import flixel.group.FlxSpriteGroup;
 import ui.FlxVirtualPad;
 import ui.Hitbox;
 
-import Config;
 
 
 class Mobilecontrols extends FlxSpriteGroup
@@ -21,25 +20,16 @@ class Mobilecontrols extends FlxSpriteGroup
 	public function new() 
 	{
 		super();
-		
-		config = new Config();
-
-		// load control mode num from Config.hx
-		mode = getModeFromNumber(config.getcontrolmode());
-		trace(config.getcontrolmode());
 
 		switch (mode)
 		{
-			case VIRTUALPAD_RIGHT:
-				initVirtualPad(0);
-			case VIRTUALPAD_LEFT:
-				initVirtualPad(1);
-			case VIRTUALPAD_CUSTOM:
-				initVirtualPad(2);
 			case HITBOX:
 				_hitbox = new Hitbox();
 				add(_hitbox);
-			case KEYBOARD:
+
+			case DEFAULT:
+				_hitbox = new Hitbox();
+				add(_hitbox);
 		}
 	}
 
