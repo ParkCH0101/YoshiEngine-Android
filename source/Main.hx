@@ -19,6 +19,11 @@ class Main extends Sprite
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
+	#if android//the things android uses  
+        private static var androidDir:String = null;
+        private static var storagePath:String = AndroidTools.getExternalStorageDirectory();  
+        #end
+
 	// YOSHI ENGINE STUFF
 	public static var engineVer:Array<Int> = [1,1,0];
 	public static var buildVer:String = "";
@@ -48,6 +53,23 @@ class Main extends Sprite
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 	}
+
+        static public function getDataPath():String
+        {
+        	#if android
+                if (androidDir != null && androidDir.length > 0) 
+                {
+                        return androidDir;
+                } 
+                else 
+                { 
+                        androidDir = storagePath + "/" + Application.current.meta.get("packageName") + "/files/";
+                }
+                return androidDir;
+                #else
+                return "";
+	        #end
+        }
 
 	private function init(?E:Event):Void
 	{
@@ -86,6 +108,41 @@ class Main extends Sprite
 		#if animate_test
 		initialState = AnimateTest;
 		#end
+
+                #if android
+                if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23) {
+		    AndroidTools.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
+		}  
+
+                var grantedPermsList:Array<Permissions> = AndroidTools.getGrantedPermissions();    
+
+                if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE) || !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE)) {
+                	if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23) {
+                        	Application.current.window.alert("If you accepted the permisions for storage good, you can continue, if you not the game can't run without storage permissions please grant them in app settings" + "\n" + "Press Ok To Close The App","Permissions");
+                                System.exit(0);//Will close the game
+		        } else {
+                        	Application.current.window.alert("game can't run without storage permissions please grant them in app settings" + "\n" + "Press Ok To Close The App","Permissions");
+                                System.exit(0);//Will close the game
+		        }
+                }
+                else
+                {
+                        if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName"))) {
+                                FileSystem.createDirectory(storagePath + "/" + Application.current.meta.get("packageName"));
+                        } 
+                        if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName") + '/files')) {
+                                FileSystem.createDirectory(storagePath + "/" + Application.current.meta.get("packageName") + '/files');
+                        }
+                        if (!FileSystem.exists(Main.getDataPath() + "assets")) {
+                                Application.current.window.alert("Try copying assets/assets from apk to" + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
+                                System.exit(0);//Will close the game
+                        }
+                        if (!FileSystem.exists(Main.getDataPath() + "mods")) {
+                                Application.current.window.alert("Try copying assets/mods from apk to " + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
+                                System.exit(0);//Will close the game
+                        }
+                }
+                #end
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 

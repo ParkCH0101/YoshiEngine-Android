@@ -54,6 +54,10 @@ import openfl.display.StageQuality;
 import openfl.display.BitmapData;
 import openfl.filters.ShaderFilter;
 import LoadSettings.Settings;
+#if android
+import ui.Hitbox;
+import ui.Mobilecontrols;
+#end
 
 using StringTools;
 
@@ -202,6 +206,7 @@ class PlayState extends MusicBeatState
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
+	public var camControls:FlxCamera;
 	
 	public var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	
@@ -227,7 +232,11 @@ class PlayState extends MusicBeatState
 	public var detailsText:String = "";
 	public var detailsPausedText:String = "";
 	#end
-	
+
+
+        #if android
+	var mcontrols:Mobilecontrols; 
+	#end
 	
 	public var paused:Bool = false;
 	public var startedCountdown:Bool = false;
@@ -412,6 +421,7 @@ class PlayState extends MusicBeatState
 		camHUD.zoom = engineSettings.noteScale;
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
+               FlxG.cameras.add(camControls);
 
 		FlxCamera.defaultCameras = [camGame];
 
@@ -878,6 +888,51 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
+              #if android
+		var curcontrol:HitboxType = DEFAULT;
+
+		switch (mania){
+			case 0:
+				curcontrol = ONE;
+			case 1:
+				curcontrol = TWO;
+			case 2:
+				curcontrol = THREE;					
+			case 3:
+				curcontrol = DEFAULT;	
+			case 4:
+				curcontrol = FIVE;
+			case 5:
+				curcontrol = SIX;
+			case 6:
+				curcontrol = SEVEN;
+			case 7:
+				curcontrol = EIGHT;
+			case 8:
+				curcontrol = NINE;	
+			case 9:
+				curcontrol = TEN;	
+			case 10:
+				curcontrol = ELEVEN;									
+			default:
+				curcontrol = DEFAULT;
+		}
+		_hitbox = new Hitbox(curcontrol);
+		controls.setHitBoxUI(_hitbox, curcontrol);
+
+		trackedinputsUI = controls.trackedinputsUI;
+		controls.trackedinputsUI = [];
+
+		var camcontrol = new FlxCamera();
+		FlxG.cameras.add(camcontrol);
+		camcontrol.bgColor.alpha = 0;
+		_hitbox.cameras = [camcontrol];
+
+		_hitbox.visible = false;
+
+		add(_hitbox);
+		#end
+
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
 		// UI_camera.zoom = 1;
@@ -1012,6 +1067,11 @@ class PlayState extends MusicBeatState
 	public function startCountdown():Void
 	{
 		inCutscene = false;
+
+                        #if android
+		        mcontrols.visible = true;
+		        #end
+		        
 
 		trace("SONG.keyNumber = " + Std.string(SONG.keyNumber));
 		if (SONG.keyNumber == 0 || SONG.keyNumber == null) SONG.keyNumber = 4;
@@ -1240,6 +1300,7 @@ class PlayState extends MusicBeatState
 		var playerCounter:Int = 0;
 
 		var daBeats:Int = 0; // Not exactly representative of 'daBeats' lol, just how much it has looped
+
 		
 		if (PlayState.SONG.keyNumber == 0 || PlayState.SONG.keyNumber == null) PlayState.SONG.keyNumber = 4;
 		for(t in PlayState.SONG.noteTypes) {
@@ -1570,7 +1631,7 @@ class PlayState extends MusicBeatState
 			hitCounter.y = 700 + (guiOffset.y / 2) - hitCounter.height;
 		}
 
-		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
+		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
 			persistentDraw = true;
