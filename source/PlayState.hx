@@ -9,7 +9,6 @@ import flixel.system.debug.interaction.Interaction;
 import StoryMenuState.FNFWeek;
 import StoryMenuState.WeeksJson;
 import flixel.input.keyboard.FlxKey;
-import ui.HitboxType;
 import Note.NoteDirection;
 import flixel.system.macros.FlxMacroUtil;
 #if desktop
@@ -892,49 +891,24 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
-              #if android
-		var curcontrol:HitboxType = DEFAULT;
+                #if android
+			mcontrols = new Mobilecontrols();
+			switch (mcontrols.mode)
+			{
+				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
+					controls.setVirtualPadNOTES(mcontrols._virtualPad, FULL, NONE);
+				case HITBOX:
+					controls.setHitBoxNOTES(mcontrols._hitbox);
+				default:
+			}
+			trackedinputsNOTES = controls.trackedinputsNOTES;
+			controls.trackedinputsNOTES = [];
 
-		switch (SONG.keyNumber){
-			case 1:
-				curcontrol = ONE;
-			case 2:
-				curcontrol = TWO;
-			case 3:
-				curcontrol = THREE;					
-			case 4:
-				curcontrol = DEFAULT;	
-			case 5:
-				curcontrol = FIVE;
-			case 6:
-				curcontrol = SIX;
-			case 7:
-				curcontrol = SEVEN;
-			case 8:
-				curcontrol = EIGHT;
-			case 9:
-				curcontrol = NINE;	
-			case 10:
-				curcontrol = TEN;	
-			case 11:
-				curcontrol = ELEVEN;									
-			default:
-				curcontrol = DEFAULT;
-		}
-		_hitbox = new Hitbox(curcontrol);
-		controls.setHitBoxUI(_hitbox, curcontrol);
+			mcontrols.cameras = [camControls];
 
-		trackedinputsUI = controls.trackedinputsUI;
-		controls.trackedinputsUI = [];
+			mcontrols.visible = false;
 
-		var camcontrol = new FlxCamera();
-		FlxG.cameras.add(camcontrol);
-		camcontrol.bgColor.alpha = 0;
-		_hitbox.cameras = [camcontrol];
-
-		_hitbox.visible = false;
-
-		add(_hitbox);
+			add(mcontrols);
 		#end
 
 		// if (SONG.song == 'South')
