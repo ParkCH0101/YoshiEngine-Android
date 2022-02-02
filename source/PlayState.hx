@@ -894,7 +894,7 @@ class PlayState extends MusicBeatState
               #if android
 		var curcontrol:HitboxType = DEFAULT;
 
-		switch (SONG.keyNumber){
+		switch (keyNumber){
 			case 1:
 				curcontrol = ONE;
 			case 2:

@@ -8,6 +8,12 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+#if android //only android will use those
+import sys.FileSystem;
+import lime.app.Application;
+import lime.system.System;
+import android.*;
+#end
 
 class Main extends Sprite
 {
