@@ -5,7 +5,8 @@ import flixel.FlxG;
 import flixel.util.FlxSave;
 import flixel.math.FlxPoint;
 
-class Config {
+class Config 
+{
 	var save:FlxSave;
 
 	public function getcontrolmode():Int {

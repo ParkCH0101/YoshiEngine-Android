@@ -9,6 +9,7 @@ import flixel.system.debug.interaction.Interaction;
 import StoryMenuState.FNFWeek;
 import StoryMenuState.WeeksJson;
 import flixel.input.keyboard.FlxKey;
+import ui.HitboxType
 import Note.NoteDirection;
 import flixel.system.macros.FlxMacroUtil;
 #if desktop
@@ -923,8 +924,8 @@ class PlayState extends MusicBeatState
 		_hitbox = new Hitbox(curcontrol);
 		controls.setHitBoxUI(_hitbox, curcontrol);
 
-		trackedinputs = controls.trackedinputs;
-		controls.trackedinputs = [];
+		trackedinputsUI = controls.trackedinputsUI;
+		controls.trackedinputsUI = [];
 
 		var camcontrol = new FlxCamera();
 		FlxG.cameras.add(camcontrol);
