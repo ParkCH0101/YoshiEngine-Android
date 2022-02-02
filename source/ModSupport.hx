@@ -59,14 +59,8 @@ class ExceptionState extends FlxState {
 }
 
 class MP4Video {
-    // public var video:MP4Handler = new MP4Handler();
-    // public var sprite:FlxSprite;
-    // public var finishCallback:Void->Void = function() {
-    //     PlayState.current.startCountdown();
-    // };
-    // public function new() {
-    //     sprite = new FlxSprite(0, 0);
-    // }
+    // later i fix this
+    }
 
 class Paths_Mod {
     private var mod:String;
