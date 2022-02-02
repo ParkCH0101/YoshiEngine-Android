@@ -280,7 +280,7 @@ class Controls extends FlxActionSet
 	public function addbuttonuNOTES(action:FlxActionDigital, button:FlxButton, state:FlxInputState) 
 	{
 		var input = new FlxActionInputDigitalIFlxInput(button, state);
-		trackedinputsNOTES.push(input);
+		trackedinputs.push(input)
 		
 		action.add(input);
 	}
@@ -353,7 +353,7 @@ class Controls extends FlxActionSet
 
 	public function addbuttonuUI(action:FlxActionDigital, button:FlxButton, state:FlxInputState) {
 		var input = new FlxActionInputDigitalIFlxInput(button, state);
-		trackedinputsUI.push(input);
+		trackedinputs.push(input);
 		
 		action.add(input);
 	}

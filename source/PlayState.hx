@@ -921,7 +921,7 @@ class PlayState extends MusicBeatState
 				curcontrol = DEFAULT;
 		}
 		_hitbox = new Hitbox(curcontrol);
-		controls.setHitBox(_hitbox, curcontrol);
+		controls.setHitBoxUI(_hitbox, curcontrol);
 
 		trackedinputs = controls.trackedinputs;
 		controls.trackedinputs = [];
