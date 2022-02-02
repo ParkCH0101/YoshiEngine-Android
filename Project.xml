@@ -138,7 +138,6 @@
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
-	<haxelib name="newgrounds"/>
 	<haxelib name="faxe" if='switch'/>
 	<haxelib name="polymod"/>
 	<!-- <haxelib name="hxvm-lua"/>
@@ -201,7 +200,5 @@
 	<icon path="art/iconOG.png" size='600'/>
 
 
-	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
-	<haxedef name="NG_LOGIN" if="newgrounds" />
 </project>
 

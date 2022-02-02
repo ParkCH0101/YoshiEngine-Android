@@ -27,7 +27,6 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
 
@@ -72,11 +71,6 @@ class TitleState extends MusicBeatState
 		super.create();
 
 		// NGio .noLogin(APIStuff.API);
-
-		#if ng
-		var ng:// NGio  = new // NGio (APIStuff.API, APIStuff.EncKey);
-		trace('NEWGROUNDS LOL');
-		#end
 
 
 
@@ -442,7 +436,6 @@ class TitleState extends MusicBeatState
 			case 7:
 				addMoreText('newgrounds');
 				ngSpr.visible = true;
-			// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();
 				ngSpr.visible = false;
