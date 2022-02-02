@@ -9,7 +9,7 @@ import flixel.system.debug.interaction.Interaction;
 import StoryMenuState.FNFWeek;
 import StoryMenuState.WeeksJson;
 import flixel.input.keyboard.FlxKey;
-import ui.HitboxType
+import ui.HitboxType;
 import Note.NoteDirection;
 import flixel.system.macros.FlxMacroUtil;
 #if desktop
