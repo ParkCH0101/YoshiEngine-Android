@@ -198,6 +198,8 @@ class PlayState extends MusicBeatState
 	
 	public var healthBarBG:FlxSprite;
 	public var healthBar:FlxBar;
+
+	var _hitbox:Hitbox;
 	
 	public var generatedMusic:Bool = false;
 	public var startingSong:Bool = false;
@@ -207,6 +209,7 @@ class PlayState extends MusicBeatState
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camControls:FlxCamera;
+
 	
 	public var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	
@@ -891,28 +894,28 @@ class PlayState extends MusicBeatState
               #if android
 		var curcontrol:HitboxType = DEFAULT;
 
-		switch (mania){
-			case 0:
-				curcontrol = ONE;
+		switch (SONG.keyNumber){
 			case 1:
-				curcontrol = TWO;
+				curcontrol = ONE;
 			case 2:
-				curcontrol = THREE;					
+				curcontrol = TWO;
 			case 3:
-				curcontrol = DEFAULT;	
+				curcontrol = THREE;					
 			case 4:
-				curcontrol = FIVE;
+				curcontrol = DEFAULT;	
 			case 5:
-				curcontrol = SIX;
+				curcontrol = FIVE;
 			case 6:
-				curcontrol = SEVEN;
+				curcontrol = SIX;
 			case 7:
-				curcontrol = EIGHT;
+				curcontrol = SEVEN;
 			case 8:
-				curcontrol = NINE;	
+				curcontrol = EIGHT;
 			case 9:
-				curcontrol = TEN;	
+				curcontrol = NINE;	
 			case 10:
+				curcontrol = TEN;	
+			case 11:
 				curcontrol = ELEVEN;									
 			default:
 				curcontrol = DEFAULT;
@@ -1069,7 +1072,7 @@ class PlayState extends MusicBeatState
 		inCutscene = false;
 
                         #if android
-		        mcontrols.visible = true;
+		_hitbox.visible = true;
 		        #end
 		        
 
