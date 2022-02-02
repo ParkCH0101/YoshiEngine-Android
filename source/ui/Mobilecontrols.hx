@@ -26,7 +26,7 @@ class Mobilecontrols extends FlxSpriteGroup
 				_hitbox = new Hitbox();
 				add(_hitbox);
 
-			case DEFAULT:
+			case default:
 				_hitbox = new Hitbox();
 				add(_hitbox);
 		}
