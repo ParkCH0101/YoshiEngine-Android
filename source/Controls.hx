@@ -278,6 +278,7 @@ class Controls extends FlxActionSet
 	public var trackedinputs:Array<FlxActionInput> = [];
 
 	public function addbuttonuNOTES(action:FlxActionDigital, button:FlxButton, state:FlxInputState) 
+	{
 		var input = new FlxActionInputDigitalIFlxInput(button, state);
 		trackedinputs.push(input);
 
