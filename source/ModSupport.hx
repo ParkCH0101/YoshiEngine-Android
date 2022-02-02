@@ -68,16 +68,6 @@ class MP4Video {
     //     sprite = new FlxSprite(0, 0);
     // }
 
-    public static function playMP4(path:String, callback:Void->Void, repeat:Bool = false):FlxSprite {
-        var video = new MP4Handler();
-        video.finishCallback = callback;
-        var sprite = new FlxSprite(0,0);
-        sprite.antialiasing = Settings.engineSettings.data.videoAntialiasing;
-        video.playMP4(path, repeat, sprite, null, null, true);
-        return sprite;
-    }
-}
-
 class Paths_Mod {
     private var mod:String;
     public var copyBitmap:Bool = false;
