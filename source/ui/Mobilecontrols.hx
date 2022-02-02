@@ -22,7 +22,7 @@ class Mobilecontrols extends FlxSpriteGroup
 
 		switch (mode)
 		{
-			case default:
+			default:
 				_hitbox = new Hitbox();
 				add(_hitbox);
 		}
