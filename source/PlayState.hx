@@ -893,44 +893,23 @@ class PlayState extends MusicBeatState
 
                 #if android
 			mcontrols = new Mobilecontrols();
+			switch (mcontrols.mode)
+			{
+				case HITBOX:
+					controls.setHitBoxNOTES(mcontrols._hitbox);
+				default:
+					controls.setHitBoxNOTES(mcontrols._hitbox);
+			}
+			trackedinputsNOTES = controls.trackedinputsNOTES;
+			controls.trackedinputsNOTES = [];
 
-		var mcontrols:HitboxType = DEFAULT;
+			mcontrols.cameras = [camControls];
 
-		switch (SONG.keyNumber){
-			case 1:
-				mcontrols = ONE;
-			case 2:
-				mcontrols = TWO;
-			case 3:
-				mcontrols = THREE;					
-			case 4:
-				mcontrols = DEFAULT;	
-			case 5:
-				mcontrols = FIVE;
-			case 6:
-				mcontrols = SIX;
-			case 7:
-				mcontrols = SEVEN;
-			case 8:
-				mcontrols = EIGHT;
-			case 9:
-				mcontrols = NINE;	
-			case 10:
-				mcontrols = TEN;	
-			case 11:
-				mcontrols = ELEVEN;									
-			default:
-				mcontrols = DEFAULT;
-		}
-		_hitbox = new Hitbox(mcontrols);
-		controls.setHitBoxNOTES(_hitbox, mcontrols);
+			mcontrols.visible = false;
 
-			_hitbox.cameras = [camControls];
-
-		_hitbox.visible = false;
-
-			add(_hitbox);
+			add(mcontrols);
 		#end
+
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1068,7 +1047,7 @@ class PlayState extends MusicBeatState
 		inCutscene = false;
 
                         #if android
-		_hitbox.visible = true;
+		mcontrols.visible = true;
 		        #end
 		        
 
@@ -1205,10 +1184,6 @@ class PlayState extends MusicBeatState
 		popUpGUIelements();
 	}
 
-        public function toArray():Array<>
-	{
-		return NativeArrayTools.toArray( mData, 0, size, [] );
-	}
 
 	public var timerBG:FlxSprite = null;
 	public var timerBar:FlxBar = null;
