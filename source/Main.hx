@@ -1,6 +1,6 @@
 package;
 
-import openfl.events.UncaughtErrorEvent;
+import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;
@@ -21,18 +21,19 @@ class Main extends Sprite
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 120; // How many frames per second the game should run at.
+	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+	public static var fpsVar:FPS;
+
+	// YOSHI ENGINE STUFF
+	public static var engineVer:Array<Int> = [1,1,0];
+	public static var buildVer:String = "";
 
 	#if android//the things android uses  
         private static var androidDir:String = null;
         private static var storagePath:String = AndroidTools.getExternalStorageDirectory();  
         #end
-
-	// YOSHI ENGINE STUFF
-	public static var engineVer:Array<Int> = [1,1,0];
-	public static var buildVer:String = "";
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -45,11 +46,6 @@ class Main extends Sprite
 	{
 		super();
 
-		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(e:UncaughtErrorEvent) {
-			trace(e.error);
-			trace(e.text);
-		});
-		
 		if (stage != null)
 		{
 			init();
@@ -102,17 +98,7 @@ class Main extends Sprite
 		}
 
 		#if !debug
-			initialState = TitleState;
-		#end
 		initialState = LoadingScreen;
-		#if clipRectTest
-		initialState = ClipRectTest;
-		#end
-		#if mod_test
-		initialState = ModTest;
-		#end
-		#if animate_test
-		initialState = AnimateTest;
 		#end
 
                 #if android
@@ -150,10 +136,19 @@ class Main extends Sprite
                 }
                 #end
 
+		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
-		#if !mobile
-		addChild(new FPS(10, 3, 0xFFFFFF));
+		fpsVar = new FPS(10, 3, 0xFFFFFF);
+		addChild(fpsVar);
+		if(fpsVar != null) {
+			fpsVar.visible = ClientPrefs.showFPS;
+		}
+
+		#if html5
+		FlxG.autoPause = false;
+		FlxG.mouse.visible = false;
 		#end
 	}
 }
+

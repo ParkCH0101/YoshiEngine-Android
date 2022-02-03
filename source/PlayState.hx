@@ -894,13 +894,33 @@ class PlayState extends MusicBeatState
                 #if android
 			mcontrols = new Mobilecontrols();
 			switch (mcontrols.mode)
-			{
-				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
-					controls.setVirtualPadNOTES(mcontrols._virtualPad, FULL, NONE);
-				case HITBOX:
-					controls.setHitBoxNOTES(mcontrols._hitbox);
-				default:
-			}
+
+		       switch (SONG.keyNumber){
+			case 1:
+				curcontrol = ONE;
+			case 2:
+				curcontrol = TWO;
+			case 3:
+				curcontrol = THREE;					
+			case 4:
+				curcontrol = DEFAULT;	
+			case 5:
+				curcontrol = FIVE;
+			case 6:
+				curcontrol = SIX;
+			case 7:
+				curcontrol = SEVEN;
+			case 8:
+				curcontrol = EIGHT;
+			case 9:
+				curcontrol = NINE;	
+			case 10:
+				curcontrol = TEN;	
+			case 11:
+				curcontrol = ELEVEN;									
+			default:
+				curcontrol = DEFAULT;
+		}
 
 			mcontrols.cameras = [camControls];
 
