@@ -900,8 +900,6 @@ class PlayState extends MusicBeatState
 				default:
 					controls.setHitBoxNOTES(mcontrols._hitbox);
 			}
-			trackedinputsNOTES = controls.trackedinputsNOTES;
-			controls.trackedinputsNOTES = [];
 
 			mcontrols.cameras = [camControls];
 
