@@ -1205,7 +1205,7 @@ class PlayState extends MusicBeatState
 		popUpGUIelements();
 	}
 
-        public function toArray():Array<T>
+        public function toArray():Array<String>
 	{
 		return NativeArrayTools.toArray( mData, 0, size, [] );
 	}
