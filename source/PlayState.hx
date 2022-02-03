@@ -922,8 +922,8 @@ class PlayState extends MusicBeatState
 			default:
 				mcontrols = DEFAULT;
 		}
-		_hitbox = new Hitbox(curcontrol);
-		controls.setHitBox(_hitbox, curcontrol);
+		_hitbox = new Hitbox(mcontrols);
+		controls.setHitBoxNOTES(_hitbox, mcontrols);
 
 			_hitbox.cameras = [camControls];
 
