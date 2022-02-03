@@ -893,9 +893,9 @@ class PlayState extends MusicBeatState
 
                 #if android
 			mcontrols = new Mobilecontrols();
-			switch (mcontrols.mode)
 
-		       switch (SONG.keyNumber){
+
+			switch (SONG.keyNumber)
 			case 1:
 				curcontrol = ONE;
 			case 2:
