@@ -284,10 +284,10 @@ class Controls extends FlxActionSet
 	
 	public function setHitBoxNOTES(hitbox:Hitbox) 
 	{
-		inline forEachBound(Control.UP, (action, state) -> addbuttonuNOTES(action, hitbox.buttonUp, state));
-		inline forEachBound(Control.DOWN, (action, state) -> addbuttonuNOTES(action, hitbox.buttonDown, state));
-		inline forEachBound(Control.LEFT, (action, state) -> addbuttonuNOTES(action, hitbox.buttonLeft, state));
-		inline forEachBound(Control.RIGHT, (action, state) -> addbuttonuNOTES(action, hitbox.buttonRight, state));	
+		inline forEachBound(Control.UP, (action, state) -> addbuttonuNOTES(action, hitbox.k3, state));
+		inline forEachBound(Control.DOWN, (action, state) -> addbuttonuNOTES(action, hitbox.k2, state));
+		inline forEachBound(Control.LEFT, (action, state) -> addbuttonuNOTES(action, hitbox.k1, state));
+		inline forEachBound(Control.RIGHT, (action, state) -> addbuttonuNOTES(action, hitbox.k4, state));	
 	}
 	
 	public function setVirtualPadNOTES(virtualPad:FlxVirtualPad, ?DPad:FlxDPadMode, ?Action:FlxActionMode) 
@@ -356,10 +356,10 @@ class Controls extends FlxActionSet
 	
 	public function setHitBoxUI(hitbox:Hitbox) 
 	{
-		inline forEachBound(Control.UP, (action, state) -> addbuttonuUI(action, hitbox.buttonUp, state));
-		inline forEachBound(Control.DOWN, (action, state) -> addbuttonuUI(action, hitbox.buttonDown, state));
-		inline forEachBound(Control.LEFT, (action, state) -> addbuttonuUI(action, hitbox.buttonLeft, state));
-		inline forEachBound(Control.RIGHT, (action, state) -> addbuttonuUI(action, hitbox.buttonRight, state));	
+		inline forEachBound(Control.UP, (action, state) -> addbuttonuNOTES(action, hitbox.k3, state));
+		inline forEachBound(Control.DOWN, (action, state) -> addbuttonuNOTES(action, hitbox.k2, state));
+		inline forEachBound(Control.LEFT, (action, state) -> addbuttonuNOTES(action, hitbox.k1, state));
+		inline forEachBound(Control.RIGHT, (action, state) -> addbuttonuNOTES(action, hitbox.k4, state));		
 	}
 	
 	public function setVirtualPadUI(virtualPad:FlxVirtualPad, ?DPad:FlxDPadMode, ?Action:FlxActionMode) 

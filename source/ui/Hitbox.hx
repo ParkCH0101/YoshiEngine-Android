@@ -155,7 +155,7 @@ class Hitbox extends FlxSpriteGroup
                 hitbox.add(add(k7 = createhitbox(sizex * 6, "k7")));
                 hitbox.add(add(k8 = createhitbox(sizex * 7, "k8"))); 
             }                            
-            case NINE:
+            case nine:
             {
                 hitbox_hint.loadGraphic('assets/shared/images/hitbox/hitbox9k_hint.png');
 

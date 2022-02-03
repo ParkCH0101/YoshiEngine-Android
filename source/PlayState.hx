@@ -896,7 +896,7 @@ class PlayState extends MusicBeatState
 
 		var mcontrols:HitboxType = DEFAULT;
 
-		switch (mania){
+		switch (SONG.keyNumber){
 			case 1:
 				mcontrols = ONE;
 			case 2:
@@ -922,13 +922,14 @@ class PlayState extends MusicBeatState
 			default:
 				mcontrols = DEFAULT;
 		}
-	_hitbox = new Hitbox(mcontrols);
-	controls.setHitBox(_hitbox, mcontrols);
-			mcontrols.cameras = [camControls];
+		_hitbox = new Hitbox(curcontrol);
+		controls.setHitBox(_hitbox, curcontrol);
 
-			mcontrols.visible = false;
+			_hitbox.cameras = [camControls];
 
-			add(mcontrols);
+		_hitbox.visible = false;
+
+			add(_hitbox);
 		#end
 
 		// if (SONG.song == 'South')
