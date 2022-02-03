@@ -1205,6 +1205,11 @@ class PlayState extends MusicBeatState
 		popUpGUIelements();
 	}
 
+        public function toArray():Array<T>
+	{
+		return NativeArrayTools.toArray( mData, 0, size, [] );
+	}
+
 	public var timerBG:FlxSprite = null;
 	public var timerBar:FlxBar = null;
 	public var timerTotalLength:FlxText = null;
