@@ -200,6 +200,7 @@ class PlayState extends MusicBeatState
 	public var healthBar:FlxBar;
 
 	var _hitbox:Hitbox;
+	var _hitbox:Hitbox;
 	
 	public var generatedMusic:Bool = false;
 	public var startingSong:Bool = false;
@@ -1205,7 +1206,7 @@ class PlayState extends MusicBeatState
 		popUpGUIelements();
 	}
 
-        public function toArray():Array<String>
+        public function toArray():Array<T>
 	{
 		return NativeArrayTools.toArray( mData, 0, size, [] );
 	}

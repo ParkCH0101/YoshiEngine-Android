@@ -144,6 +144,7 @@
 	<haxelib name="linc_lua"/> -->
 	<haxelib name="linc_luajit" />
         <haxelib name="AndroidTools" if="android"/>
+        <haxelib name="haxe-strings" />
 	<haxelib name="akifox-asynchttp"/>
 	
 	<!-- <haxelib name="flixel-animate"/> -->
